@@ -57,7 +57,7 @@ class Cart extends React.Component{
     handleDeleteProduct = (id) => {
         const {products} = this.state;
 
-        const items = products.filter((item) => item.id !== id);
+        const items = products.filter((item) => item.id !== id); //copy all items except the one whose id matches
 
         this.setState({
             products: items
