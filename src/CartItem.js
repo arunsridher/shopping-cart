@@ -11,14 +11,36 @@ class CartItem extends React.Component{
         }
 
         // this.decreaseQuantity = this.decreaseQuantity.bind(this);
+
+        // this.testing();
     }
+
+    // testing(){
+    //     const promise = new Promise((resolve, reject) => {
+    //         setTimeout(() => {
+    //             resolve('done');
+    //         }, 5000);
+    //     });
+
+    //     promise.then(() => {
+    //         this.setState( {quantity: this.quantity + 10});
+
+    //         this.setState( {quantity: this.quantity + 10});
+            
+    //         this.setState( {quantity: this.quantity + 10});
+            
+    //         console.log('state ', this.state);
+    //     });
+    // }
 
     increaseQuantity(){
         // this.state.quantity += 1;
 
-        //setState form 1 - use form 1 when you dont need previous form
+        // setState form 1 - use form 1 when you dont need previous form
         // this.setState({
         //     quantity: this.state.quantity + 1
+        // }, () => {
+        // console.log('this.state ', this.state);    
         // });
 
         //setState form 2 - when you need previous state
@@ -34,6 +56,8 @@ class CartItem extends React.Component{
             return{
                 quantity: prevState.quantity > 1 ? prevState.quantity - 1: 0
             }
+        }, () => {
+            console.log('set state completed; this.state ', this.state);
         });
     }
 
