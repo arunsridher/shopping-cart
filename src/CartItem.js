@@ -14,13 +14,27 @@ class CartItem extends React.Component{
     }
 
     increaseQuantity(){
-        this.state.quantity += 1;
-        console.log('this', this);
+        // this.state.quantity += 1;
+
+        //setState form 1 - use form 1 when you dont need previous form
+        // this.setState({
+        //     quantity: this.state.quantity + 1
+        // });
+
+        //setState form 2 - when you need previous state
+        this.setState((prevState) => {
+            return{
+                quantity : prevState.quantity + 1
+            }
+        });
     }
 
     decreaseQuantity = () =>{
-        this.state.quantity -= 1;
-        console.log('this', this);
+        this.setState((prevState) => {
+            return{
+                quantity: prevState.quantity > 1 ? prevState.quantity - 1: 0
+            }
+        });
     }
 
     render(){
