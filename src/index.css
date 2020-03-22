@@ -7,6 +7,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.cart{
+  display: flex;
+  flex-direction: column;
+}
+
 .cart-item{
   display: inline-flex;
   margin: 20px 10px;
