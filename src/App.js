@@ -45,7 +45,7 @@ handleIncreaseQuantity = (product) => {
 handleDecreaseQuantity = (product) => {
     const {products} = this.state;
     const index = products.indexOf(product);
-    if(products[index].quantity == 0){
+    if(products[index].quantity === 0){
         return;
     }
     products[index].quantity -= 1;
