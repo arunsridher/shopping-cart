@@ -15,7 +15,10 @@ class App extends React.Component {
   componentDidMount() {
     firebase
       .firestore()
-      .collection("products")
+      .collection('products')
+      // .where('price', '>=', 3999)
+      // .where('title', '==', 'Watch')
+      // .orderBy('price', 'desc')
       .onSnapshot((snapshot) => {
         const products = snapshot.docs.map(doc => {
           const data = doc.data();
@@ -87,13 +90,25 @@ class App extends React.Component {
   };
 
   handleDeleteProduct = id => {
-    const { products } = this.state;
+    // const { products } = this.state;
 
-    const items = products.filter(product => product.id !== id);
+    // const items = products.filter(product => product.id !== id);
 
-    this.setState({
-      products: items
-    });
+    // this.setState({
+    //   products: items
+    // });
+
+    const docRef = firebase.firestore().collection('products').doc(id);
+
+    docRef
+      .delete()
+      .then(()=>{
+        console.log("Product deleted successfully");
+      })
+      .catch((err)=>{
+        console.log("Error in deleting the product ", err);
+      })
+
   };
 
   getcountOfCartItems = () => {
