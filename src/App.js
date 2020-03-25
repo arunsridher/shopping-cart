@@ -43,11 +43,22 @@ class App extends React.Component {
     const { products } = this.state;
     const index = products.indexOf(product);
 
-    products[index].quantity += 1;
+    // products[index].quantity += 1;
 
-    this.setState({
-      products
-    });
+    // this.setState({
+    //   products
+    // });
+
+    const docRef = firebase.firestore().collection('products').doc(products[index].id);
+    docRef.update({
+      quantity: products[index].quantity + 1
+    })
+    .then(() => {
+      console.log("Quantity updated scuccessfully in firebase");
+    })
+    .catch((err) => {
+      console.log("Error in updating quantity in firebase ", err);
+    })
   };
 
   handleDecreaseQuantity = product => {
@@ -57,11 +68,22 @@ class App extends React.Component {
     if (products[index].quantity === 0) {
       return;
     }
-    products[index].quantity -= 1;
+    // products[index].quantity -= 1;
 
-    this.setState({
-      products
-    });
+    // this.setState({
+    //   products
+    // });
+
+    const docRef = firebase.firestore().collection('products').doc(products[index].id);
+    docRef.update({
+      quantity: products[index].quantity - 1
+    })
+    .then(()=>{
+      console.log("Quantity updated scuccessfully in firebase")
+    })
+    .catch((err)=>{
+      console.log("Error in updating quantity in firebase ", err);
+    })
   };
 
   handleDeleteProduct = id => {
@@ -122,7 +144,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Navbar count={this.getcountOfCartItems()} />
-        <button onClick={this.addProduct} style={{padding: 20, fontSize:20}}>Add product</button>
+        {/* <button onClick={this.addProduct} style={{padding: 20, fontSize:20}}>Add product</button> */}
         <Cart
           onIncreaseQuantity={this.handleIncreaseQuantity}
           onDecreaseQuantity={this.handleDecreaseQuantity}
